@@ -1,0 +1,24 @@
+createTaskAPI:
+  handler: src/api/createTask.createTask
+  name: bambee-api-create-task
+  timeout: 30
+  environment:
+    REGION: ${self:custom.aws.region}
+    ACCOUNT_ID: ${self:custom.aws.accountId}
+    NODE_ENV: ${opt:stage}
+  events:
+    - http:
+        method: post
+        path: /tasks/v1
+getUserTasksAPI:
+  handler: src/api/getUserTasks.getUserTasks
+  name: bambee-api-get-user-tasks
+  timeout: 30
+  events:
+    - http:
+        method: get
+        path: /users/v1/{userId}/tasks
+        request:
+          parameters:
+            paths:
+              userId: true

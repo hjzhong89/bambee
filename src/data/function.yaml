@@ -1,0 +1,35 @@
+create:
+  handler: src/data/createTask.create
+  name: bambee-task-createTask
+  timeout: 300
+  environment:
+    NODE_ENV: ${opt:stage}
+  events:
+    - sqs:
+        arn: arn:aws:sqs:${self:custom.aws.region}:${self:custom.aws.accountId}:bambee-${opt:stage}-task-createTask
+getUserTasks:
+  handler: src/data/getUserTasks.getUserTasks
+  name: bambee-task-get-for-user
+  environment:
+    NODE_ENV: ${opt:stage}
+getTaskById:
+  handler: src/data/getTaskById.getTaskById
+  name: bambee-task-get-by-id
+  environment:
+    NODE_ENV: ${opt:stage}
+updateTaskV1:
+  handler: src/data/updateTaskV1.updateTaskV1
+  name: bambee-task-update-v1
+  environment:
+    NODE_ENV: ${opt:stage}
+  events:
+    - sqs:
+        arn: arn:aws:sqs:${self:custom.aws.region}:${self:custom.aws.accountId}:bambee-${opt:stage}-task-update-v1
+updateTaskV2:
+  handler: src/data/updateTaskV2.updateTaskV2
+  name: bambee-task-update-v2
+  environment:
+    NODE_ENV: ${opt:stage}
+  events:
+    - sqs:
+        arn: arn:aws:sqs:${self:custom.aws.region}:${self:custom.aws.accountId}:bambee-${opt:stage}-task-update-v2

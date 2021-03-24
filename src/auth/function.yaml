@@ -1,0 +1,10 @@
+authorizer:
+  handler: src/auth/provideJwt.provideJwt
+  name: bambee-jwt-provider
+  timeout: 30
+  environment:
+    NODE_ENV: ${opt:stage}
+  events:
+    - http:
+        method: post
+        path: users/auth
