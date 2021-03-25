@@ -1,6 +1,6 @@
-import {APIGatewayEvent, APIGatewayProxyResult, Context} from "aws-lambda";
+import {APIGatewayEvent, APIGatewayProxyResult, Context} from 'aws-lambda';
 import {Lambda} from 'aws-sdk';
-import {GetUserTasksEvent} from "../data/getUserTasks";
+import {GetUserTasksEvent} from '../data/getUserTasks';
 
 const client = new Lambda();
 
